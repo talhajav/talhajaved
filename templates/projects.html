@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Projects — Talha Javed{% endblock %}
+
+{% block content %}
+<h1>Projects</h1>
+
+{% if projects %}
+<ul class="blog-list">
+    {% for project in projects %}
+    <li class="blog-item">
+        <h2><a href="/projects/{{ project.slug }}/">{{ project.title }}</a></h2>
+        {% if project.technologies %}
+        <div class="date">{{ project.technologies }}</div>
+        {% endif %}
+        {% if project.excerpt %}
+        <p class="excerpt">{{ project.excerpt }}</p>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No projects yet. Check back soon!</p>
+{% endif %}
+{% endblock %}

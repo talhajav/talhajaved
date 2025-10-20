@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Blog — Talha Javed{% endblock %}
+
+{% block content %}
+<h1>Blog</h1>
+
+{% if posts %}
+<ul class="blog-list">
+    {% for post in posts %}
+    <li class="blog-item">
+        <h2><a href="/blog/{{ post.slug }}/">{{ post.title }}</a></h2>
+        <div class="date">{{ post.date.strftime('%B %d, %Y') }}</div>
+        {% if post.excerpt %}
+        <p class="excerpt">{{ post.excerpt }}</p>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No blog posts yet. Check back soon!</p>
+{% endif %}
+{% endblock %}

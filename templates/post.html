@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} — Talha Javed{% endblock %}
+
+{% block content %}
+<h1>{{ post.title }}</h1>
+<div class="date">{{ post.date.strftime('%B %d, %Y') }}</div>
+{{ post.content|safe }}
+
+<a href="/blog/" class="back-link">&larr; Back to all posts</a>
+{% endblock %}
