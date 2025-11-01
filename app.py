@@ -254,4 +254,4 @@ if __name__ == '__main__':
         print(f"Site built successfully in {app.config['FREEZER_DESTINATION']}/")
     else:
         # Run development server
-        app.run(debug=True, port=8080)
+        app.run(debug=True, port=7060)
