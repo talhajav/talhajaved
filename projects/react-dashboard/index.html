@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Dashboard Application — Talha Javed</title>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #000000;
+            --text-primary: #000000;
+            --text-secondary: #666666;
+            --text-inverse: #ffffff;
+            --border-color: #e5e5e5;
+            --hover-bg: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            font-size: 16px;
+            letter-spacing: -0.011em;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        nav {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.2s ease;
+            letter-spacing: -0.01em;
+        }
+
+        nav a:first-child {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-right: auto;
+        }
+
+        nav a:hover {
+            color: var(--text-secondary);
+        }
+
+        nav a:not(:first-child)::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--text-primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:not(:first-child):hover::after {
+            width: 100%;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        main {
+            min-height: 60vh;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.04em;
+            color: var(--text-primary);
+        }
+
+        h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Links */
+        a {
+            color: var(--text-primary);
+            text-decoration: underline;
+            text-decoration-color: var(--border-color);
+            text-underline-offset: 3px;
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
+            text-decoration-color: var(--text-primary);
+        }
+
+        main a {
+            font-weight: 500;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1.5rem 0 1.5rem 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        li::marker {
+            color: var(--text-secondary);
+        }
+
+        /* Code */
+        code {
+            background: var(--hover-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+            font-size: 0.9em;
+            border: 1px solid var(--border-color);
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            color: var(--text-inverse);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 2rem 0;
+            border: 1px solid var(--text-primary);
+            line-height: 1.6;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            border: none;
+            color: var(--text-inverse);
+        }
+
+        /* Date */
+        .date {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        /* Blog List */
+        .blog-list {
+            list-style: none;
+            margin: 3rem 0 0 0;
+            padding: 0;
+        }
+
+        .blog-item {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: transform 0.2s ease;
+        }
+
+        .blog-item:first-child {
+            padding-top: 0;
+        }
+
+        .blog-item:last-child {
+            border-bottom: none;
+        }
+
+        .blog-item:hover {
+            transform: translateX(4px);
+        }
+
+        .blog-item h2 {
+            margin-top: 0;
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-item h2 a {
+            text-decoration: none;
+        }
+
+        .blog-item h2 a:hover {
+            text-decoration: underline;
+            text-decoration-color: var(--text-primary);
+        }
+
+        .blog-item .date {
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        .blog-item .excerpt {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            margin-top: 6rem;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            color: var(--text-inverse);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .back-link:hover {
+            background: var(--text-primary);
+            transform: translateX(-4px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.25rem 1.5rem;
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+
+            nav a:first-child {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+
+            .container {
+                padding: 2.5rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            h3 {
+                font-size: 1.25rem;
+            }
+
+            p, li {
+                font-size: 1rem;
+            }
+
+            .blog-item {
+                padding: 2rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--text-primary);
+            color: var(--text-inverse);
+        }
+
+        /* Smooth loading */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        main {
+            animation: fadeIn 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            
+            <a href="/">Home</a>
+            
+            <a href="/about/">About</a>
+            
+            <a href="/projects/">Projects</a>
+            
+            <a href="/blog/">Blog</a>
+            
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            
+<h1>React Dashboard Application</h1>
+
+<div class="date">React, TypeScript, Node.js</div>
+
+<p>A modern dashboard application built with React and TypeScript. This project demonstrates best practices in frontend development with type safety and component reusability.</p>
+<h2 id="technologies">Technologies</h2>
+<ul>
+<li><strong>React</strong> - UI library for building interfaces</li>
+<li><strong>TypeScript</strong> - Type-safe JavaScript</li>
+<li><strong>Node.js</strong> - JavaScript runtime</li>
+<li><strong>Vite</strong> - Fast build tool and dev server</li>
+<li><strong>TailwindCSS</strong> - Utility-first CSS framework</li>
+<li><strong>React Query</strong> - Data fetching and caching</li>
+</ul>
+<h2 id="features">Features</h2>
+<ul>
+<li><strong>Type-safe development</strong> - Full TypeScript coverage for reliability</li>
+<li><strong>Component-based architecture</strong> - Reusable, testable UI components</li>
+<li><strong>State management with hooks</strong> - Modern React patterns with useState, useEffect, etc.</li>
+<li><strong>Responsive UI</strong> - Mobile-first design that works on all devices</li>
+<li><strong>Data visualization</strong> - Charts and graphs for analytics</li>
+<li><strong>Real-time updates</strong> - WebSocket integration for live data</li>
+</ul>
+<h2 id="architecture">Architecture</h2>
+<p>The application follows a feature-based folder structure with clear separation of concerns:
+- Components - Reusable UI elements
+- Hooks - Custom React hooks for logic reuse
+- Services - API communication layer
+- Types - TypeScript type definitions
+- Utils - Helper functions</p>
+<h2 id="development-experience">Development Experience</h2>
+<p>Hot module replacement provides instant feedback during development. TypeScript catches errors at compile time, reducing runtime bugs significantly.</p>
+<h2 id="performance-optimization">Performance Optimization</h2>
+<ul>
+<li>Code splitting for faster initial loads</li>
+<li>Lazy loading of routes and components</li>
+<li>Memoization to prevent unnecessary re-renders</li>
+<li>Optimistic UI updates for better UX</li>
+<li>Efficient bundle size with tree shaking</li>
+</ul>
+<h2 id="testing">Testing</h2>
+<p>Comprehensive test coverage with:
+- Unit tests for components
+- Integration tests for features
+- E2E tests for critical user flows</p>
+
+<a href="/projects/" class="back-link">&larr; Back to all projects</a>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Talha Javed &mdash; Built with Flask & Frozen-Flask</p>
+    </footer>
+</body>
+</html>
