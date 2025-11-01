@@ -9,7 +9,7 @@
 <ul class="blog-list">
     {% for project in projects %}
     <li class="blog-item">
-        <h2><a href="/projects/{{ project.slug }}/">{{ project.title }}</a></h2>
+        <h2><a href="{{ url_for('project', slug=project.slug) }}">{{ project.title }}</a></h2>
         {% if project.technologies %}
         <div class="date">{{ project.technologies }}</div>
         {% endif %}

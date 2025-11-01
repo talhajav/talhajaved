@@ -375,7 +375,11 @@
     <header>
         <nav>
             {% for item in navigation %}
-            <a href="{{ item.url }}">{{ item.title }}</a>
+            {% if item.params %}
+            <a href="{{ url_for(item.route, **item.params) }}">{{ item.title }}</a>
+            {% else %}
+            <a href="{{ url_for(item.route) }}">{{ item.title }}</a>
+            {% endif %}
             {% endfor %}
         </nav>
     </header>

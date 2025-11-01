@@ -23,7 +23,7 @@ def inject_current_year():
 @app.context_processor
 def inject_navigation():
     """Dynamically generate navigation from available pages."""
-    nav_items = [{'url': '/', 'title': 'Home', 'order': 10}]  # Home gets order 10
+    nav_items = [{'route': 'index', 'title': 'Home', 'order': 10}]  # Home gets order 10
 
     pages_dir = Path('content') / 'pages'
     if pages_dir.exists():
@@ -32,14 +32,15 @@ def inject_navigation():
                 post = frontmatter.load(page_file)
                 nav_order = post.get('nav_order', 999)
                 nav_items.append({
-                    'url': f'/{page_file.stem}/',
+                    'route': 'page',
+                    'params': {'page_name': page_file.stem},
                     'title': post.get('nav_title', post.get('title', page_file.stem.title())),
                     'order': nav_order
                 })
 
     # Add projects and blog to navigation
-    nav_items.append({'url': '/projects/', 'title': 'Projects', 'order': 30})
-    nav_items.append({'url': '/blog/', 'title': 'Blog', 'order': 1000})
+    nav_items.append({'route': 'projects', 'title': 'Projects', 'order': 30})
+    nav_items.append({'route': 'blog', 'title': 'Blog', 'order': 1000})
 
     # Sort by order
     nav_items.sort(key=lambda x: x.get('order', 999))

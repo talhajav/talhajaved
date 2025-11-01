@@ -9,5 +9,5 @@
 {% endif %}
 {{ project.content|safe }}
 
-<a href="/projects/" class="back-link">&larr; Back to all projects</a>
+<a href="{{ url_for('projects') }}" class="back-link">&larr; Back to all projects</a>
 {% endblock %}

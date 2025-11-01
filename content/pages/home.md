@@ -12,8 +12,8 @@ I work with modern web technologies and enjoy creating clean, maintainable code.
 
 ## Explore
 
-- **[About](/about/)** - Learn more about my background and experience
-- **[Projects](/projects/)** - Check out what I've been building
-- **[Blog](/blog/)** - Read my latest posts on tech and development
+- **[About](about/)** - Learn more about my background and experience
+- **[Projects](projects/)** - Check out what I've been building
+- **[Blog](blog/)** - Read my latest posts on tech and development
 
 Feel free to reach out if you'd like to connect!
