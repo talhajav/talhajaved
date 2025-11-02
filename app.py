@@ -12,7 +12,7 @@ app.config['FREEZER_BASE_URL'] = 'https://talhajav.github.io/talhajaved/'
 
 freezer = Freezer(app)
 
-# GitHub Pages base path
+# GitHub Pages base path (configured for talhajav.github.io/talhajaved)
 BASE_PATH = '/talhajaved'
 
 
