@@ -7,13 +7,13 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
     <style>
         :root {
-            --bg-primary: #ffffff;
-            --bg-secondary: #000000;
-            --text-primary: #000000;
-            --text-secondary: #666666;
-            --text-inverse: #ffffff;
-            --border-color: #e5e5e5;
-            --hover-bg: #f5f5f5;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #e5e5e5;
+            --text-secondary: #a0a0a0;
+            --text-inverse: #0a0a0a;
+            --border-color: #2a2a2a;
+            --hover-bg: #1a1a1a;
         }
 
         * {
@@ -43,7 +43,7 @@
             border-bottom: 1px solid var(--border-color);
             z-index: 100;
             backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(10, 10, 10, 0.95);
         }
 
         nav {
@@ -182,12 +182,12 @@
 
         pre {
             background: var(--bg-secondary);
-            color: var(--text-inverse);
+            color: var(--text-primary);
             padding: 1.5rem;
             border-radius: 8px;
             overflow-x: auto;
             margin: 2rem 0;
-            border: 1px solid var(--text-primary);
+            border: 1px solid var(--border-color);
             line-height: 1.6;
         }
 
@@ -195,7 +195,7 @@
             background: none;
             padding: 0;
             border: none;
-            color: var(--text-inverse);
+            color: var(--text-primary);
         }
 
         /* Date */
@@ -280,16 +280,18 @@
             margin-top: 3rem;
             padding: 0.75rem 1.5rem;
             background: var(--bg-secondary);
-            color: var(--text-inverse);
+            color: var(--text-primary);
             text-decoration: none;
             border-radius: 6px;
             font-weight: 600;
             font-size: 0.95rem;
             transition: all 0.2s ease;
+            border: 1px solid var(--border-color);
         }
 
         .back-link:hover {
-            background: var(--text-primary);
+            background: var(--hover-bg);
+            border-color: var(--text-secondary);
             transform: translateX(-4px);
         }
 
@@ -351,8 +353,8 @@
 
         /* Selection */
         ::selection {
-            background: var(--text-primary);
-            color: var(--text-inverse);
+            background: #4a4a4a;
+            color: var(--text-primary);
         }
 
         /* Smooth loading */
