@@ -4,7 +4,7 @@ nav_title: About
 nav_order: 20
 ---
 
-Hi! I'm Talha Javed, a software engineer with a passion for creating elegant and efficient solutions.
+Hi! I'm Talha Javed, a software engineer with a passion for creating elegant solutions.
 
 ## Background
 
