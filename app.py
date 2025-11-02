@@ -7,7 +7,12 @@ from datetime import datetime
 
 app = Flask(__name__)
 app.config['FREEZER_DESTINATION'] = 'build'
-app.config['FREEZER_RELATIVE_URLS'] = True
+app.config['FREEZER_RELATIVE_URLS'] = False
+app.config['FREEZER_BASE_URL'] = 'https://talhajav.github.io/talhajaved/'
+
+# Set the application root for proper URL generation
+app.config['APPLICATION_ROOT'] = '/talhajaved'
+
 freezer = Freezer(app)
 
 # Markdown extensions for better rendering
