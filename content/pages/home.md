@@ -4,7 +4,7 @@ title: Welcome
 
 # Hi, I'm Talha Javed
 
-Welcome to my personal website. I'm a software developer passionate about building elegant solutions to complex problems.
+Welcome to my personal website. I'm a software engineer passionate about building elegant solutions to complex problems.
 
 ## What I Do
 
