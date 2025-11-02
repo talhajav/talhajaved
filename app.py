@@ -10,10 +10,31 @@ app.config['FREEZER_DESTINATION'] = 'build'
 app.config['FREEZER_RELATIVE_URLS'] = False
 app.config['FREEZER_BASE_URL'] = 'https://talhajav.github.io/talhajaved/'
 
-# Set the application root for proper URL generation
-app.config['APPLICATION_ROOT'] = '/talhajaved'
-
 freezer = Freezer(app)
+
+# GitHub Pages base path
+BASE_PATH = '/talhajaved'
+
+
+@app.url_defaults
+def add_base_path(endpoint, values):
+    """Add base path to all URL generation."""
+    pass  # url_defaults is called before url building
+
+
+@app.context_processor
+def inject_url_for_with_base():
+    """Provide a url_for function that includes the base path."""
+    from flask import url_for as flask_url_for
+
+    def url_for(endpoint, **values):
+        url = flask_url_for(endpoint, **values)
+        # Prepend base path if not already present
+        if not url.startswith(BASE_PATH) and not url.startswith('http'):
+            url = BASE_PATH + url
+        return url
+
+    return {'url_for': url_for}
 
 # Markdown extensions for better rendering
 MD = markdown.Markdown(extensions=['fenced_code', 'codehilite', 'tables', 'toc'])
