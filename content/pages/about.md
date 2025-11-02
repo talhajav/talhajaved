@@ -12,5 +12,5 @@ Went to school in Toronto and ended up in the Bay Area working on autonomous veh
 ## Contact
 
 Feel free to reach out to me:
-- **Email**: talhajav97@gmail.com
+- **Email**: [talhajav97@gmail.com](mailto:talhajav97@gmail.com)
 
