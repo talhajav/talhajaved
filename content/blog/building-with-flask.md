@@ -4,8 +4,6 @@ date: 2025-01-10
 excerpt: A guide to creating static websites using Flask and Frozen-Flask.
 ---
 
-# Building Static Sites with Flask
-
 Flask is known as a dynamic web framework, but with Frozen-Flask, you can use it to generate static websites that combine Flask's flexibility with the performance of static hosting.
 
 ## Why Use Flask for Static Sites?

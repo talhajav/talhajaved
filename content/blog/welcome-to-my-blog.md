@@ -4,8 +4,6 @@ date: 2025-10-15
 excerpt: The first post on my new blog built with Flask and Frozen-Flask.
 ---
 
-# Welcome to My Blog
-
 This is my first blog post! I'm excited to start sharing my thoughts on technology, and whatever else comes to mind.
 
 ## Why I Built This Site
