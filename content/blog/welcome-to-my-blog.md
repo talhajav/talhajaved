@@ -1,12 +1,12 @@
 ---
 title: Welcome to My Blog
-date: 2025-01-15
+date: 2025-10-15
 excerpt: The first post on my new blog built with Flask and Frozen-Flask.
 ---
 
 # Welcome to My Blog
 
-This is my first blog post! I'm excited to start sharing my thoughts on software development, technology, and whatever else comes to mind.
+This is my first blog post! I'm excited to start sharing my thoughts on technology, and whatever else comes to mind.
 
 ## Why I Built This Site
 
@@ -30,23 +30,10 @@ Static sites offer several advantages:
 
 I'm planning to write about various topics including:
 
-- Web development best practices
 - Python tips and tricks
 - Project showcases
 - Tools and workflows
 
 Stay tuned for more posts!
-
-## Code Example
-
-Here's a simple Python function:
-
-```python
-def greet(name):
-    """Say hello to someone."""
-    return f"Hello, {name}!"
-
-print(greet("World"))
-```
 
 Thanks for reading!

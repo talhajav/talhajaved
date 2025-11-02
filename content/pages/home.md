@@ -4,11 +4,11 @@ title: Welcome
 
 # Hi, I'm Talha Javed
 
-Welcome to my personal website. I'm a software engineer passionate about building elegant solutions to problems.
+Welcome to my personal website! 
 
 ## What I Do
 
-I work with modern web technologies and enjoy creating clean, maintainable code. This site showcases my work and shares my thoughts on software development.
+I enjoy automating (or at least trying to) everything around me so much- I got a job out of it! I love to tinker with new technologies (HW and SW both) in my free time. 
 
 ## Explore
 
