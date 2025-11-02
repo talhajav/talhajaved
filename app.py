@@ -16,25 +16,18 @@ freezer = Freezer(app)
 BASE_PATH = '/talhajaved'
 
 
-@app.url_defaults
-def add_base_path(endpoint, values):
-    """Add base path to all URL generation."""
-    pass  # url_defaults is called before url building
-
-
-@app.context_processor
-def inject_url_for_with_base():
-    """Provide a url_for function that includes the base path."""
+def url_for_with_base(endpoint, **values):
+    """Generate URL with base path prepended."""
     from flask import url_for as flask_url_for
+    url = flask_url_for(endpoint, **values)
+    # Prepend base path if not already present
+    if not url.startswith(BASE_PATH) and not url.startswith('http'):
+        url = BASE_PATH + url
+    return url
 
-    def url_for(endpoint, **values):
-        url = flask_url_for(endpoint, **values)
-        # Prepend base path if not already present
-        if not url.startswith(BASE_PATH) and not url.startswith('http'):
-            url = BASE_PATH + url
-        return url
 
-    return {'url_for': url_for}
+# Override url_for in Jinja2 environment
+app.jinja_env.globals['url_for'] = url_for_with_base
 
 # Markdown extensions for better rendering
 MD = markdown.Markdown(extensions=['fenced_code', 'codehilite', 'tables', 'toc'])
