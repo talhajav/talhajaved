@@ -2,7 +2,7 @@
 title: Welcome
 ---
 
-# Hi, I'm Talha Javed
+# Hi,  I'm Talha Javed
 
 Welcome to my personal website! 
 
