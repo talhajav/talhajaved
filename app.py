@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, abort
 from flask_frozen import Freezer
 import markdown
@@ -274,4 +275,4 @@ if __name__ == '__main__':
         print(f"Site built successfully in {app.config['FREEZER_DESTINATION']}/")
     else:
         # Run development server
-        app.run(debug=True, port=7060)
+        app.run(debug=os.getenv('FLASK_DEBUG', 'false').lower() == 'true', port=7060)
