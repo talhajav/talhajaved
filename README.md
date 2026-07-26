@@ -18,7 +18,10 @@ A personal website built with Flask and Frozen-Flask, optimized for Markdown-aut
 ```
 .
 ├── app.py                  # Main Flask application
-├── requirements.txt        # Python dependencies
+├── pyproject.toml          # Project metadata, dependencies, pytest config
+├── uv.lock                 # Locked dependency versions (hash-verified)
+├── .python-version         # Pinned Python version (3.12)
+├── tests.py                # Test suite (49 tests)
 ├── content/               # All content in Markdown
 │   ├── pages/            # Static pages (About, Projects, etc.)
 │   │   ├── home.md
@@ -40,26 +43,33 @@ A personal website built with Flask and Frozen-Flask, optimized for Markdown-aut
 
 ## Quick Start
 
+Dependencies are managed with [uv](https://docs.astral.sh/uv/). Install it first if you
+don't have it:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
 ### 1. Install Dependencies
 
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
+uv sync
 ```
+
+This creates `.venv` using the Python version pinned in `.python-version` (3.12).
 
 ### 2. Run Development Server
 
 ```bash
-python app.py
+uv run python app.py
 ```
 
-Visit [http://localhost:5000](http://localhost:5000) to see your site.
+Visit [http://localhost:7060](http://localhost:7060) to see your site.
 
 ### 3. Build Static Site
 
 ```bash
-python app.py build
+uv run python app.py build
 ```
 
 The static site will be generated in the `build/` directory.
@@ -131,14 +141,14 @@ Your post content here...
 ### Netlify
 
 1. Connect your GitHub repository to Netlify
-2. Set build command: `python app.py build`
+2. Set build command: `uv sync --locked && uv run python app.py build`
 3. Set publish directory: `build`
 4. Deploy!
 
 ### Vercel
 
 1. Connect your GitHub repository to Vercel
-2. Set build command: `pip install -r requirements.txt && python app.py build`
+2. Set build command: `uv sync --locked && uv run python app.py build`
 3. Set output directory: `build`
 4. Deploy!
 
@@ -183,15 +193,24 @@ Edit [app.py](app.py) to:
 
 ## Development
 
-### Running Tests Locally
-
-Before building:
+### Running Tests
 
 ```bash
-python app.py
+uv run pytest
 ```
 
-Visit [http://localhost:5000](http://localhost:5000) and check:
+The suite lives in `tests.py`. Note that this filename does **not** match pytest's default
+`test_*.py` discovery pattern — `[tool.pytest.ini_options] python_files` in `pyproject.toml`
+covers it. Without that config a bare `pytest` collects zero tests and exits 5, which looks
+deceptively like success.
+
+### Manual Checks
+
+```bash
+uv run python app.py
+```
+
+Visit [http://localhost:7060](http://localhost:7060) and check:
 - All pages load correctly
 - Navigation works
 - Blog posts display properly
@@ -200,14 +219,14 @@ Visit [http://localhost:5000](http://localhost:5000) and check:
 ### Building for Production
 
 ```bash
-python app.py build
+uv run python app.py build
 ```
 
 Test the built site:
 
 ```bash
 cd build
-python -m http.server 8000
+uv run python -m http.server 8000
 ```
 
 Visit [http://localhost:8000](http://localhost:8000) to verify the static site works correctly.
@@ -242,8 +261,8 @@ The site supports:
 
 ### Build fails
 
-- Check Python version (3.8+ required)
-- Verify all dependencies are installed: `pip install -r requirements.txt`
+- Check Python version (3.12+ required)
+- Verify all dependencies are installed: `uv sync`
 - Look for syntax errors in Markdown files
 
 ## License
