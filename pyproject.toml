@@ -1,0 +1,27 @@
+[project]
+name = "talhajaved"
+version = "0.1.0"
+description = "Personal website built with Flask + Frozen-Flask, frozen to static HTML for GitHub Pages"
+requires-python = ">=3.12"
+dependencies = [
+	"Flask==3.0.0",
+	"Frozen-Flask==1.0.1",
+	"Markdown==3.5.1",
+	"PyYAML==6.0.1",
+	"python-frontmatter==1.1.0",
+]
+
+[dependency-groups]
+dev = [
+	"pytest==8.4.2",
+]
+
+# app.py is a top-level script, not an installable package.
+[tool.uv]
+package = false
+
+# The suite lives in tests.py, which does NOT match pytest's default
+# test_*.py discovery pattern. Without this, a bare `pytest` silently
+# collects zero tests and exits 5, which looks like success.
+[tool.pytest.ini_options]
+python_files = ["tests.py", "test_*.py"]

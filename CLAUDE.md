@@ -8,18 +8,29 @@ A personal website (talhajav.github.io/talhajaved) built with Flask + Frozen-Fla
 
 ## Commands
 
+Dependencies are managed with **uv** (`pyproject.toml` + `uv.lock`), on Python 3.12 pinned via
+`.python-version`. Run `uv sync` once to create `.venv`.
+
 ```bash
 # Development server (port 7060)
-python app.py
+uv run python app.py
 
 # Build static site to build/
-python app.py build
+uv run python app.py build
+
+# Run the test suite (49 tests in tests.py)
+uv run pytest
 
 # Preview built site
-cd build && python -m http.server 8000
+cd build && uv run python -m http.server 8000
 ```
 
-The `run.sh` script wraps these as `./run.sh dev`, `./run.sh build`, `./run.sh test`.
+The `run.sh` script wraps these as `./run.sh dev`, `./run.sh build`, `./run.sh test`,
+`./run.sh preview`, `./run.sh install`.
+
+Note: the suite lives in `tests.py`, which does not match pytest's default `test_*.py`
+discovery. `[tool.pytest.ini_options] python_files` in `pyproject.toml` handles this — without
+it a bare `pytest` collects zero tests and exits 5, which looks deceptively like success.
 
 ## Architecture
 
